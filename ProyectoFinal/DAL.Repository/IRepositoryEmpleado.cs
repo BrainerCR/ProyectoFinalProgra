@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.Repository
 {
-    internal interface IRepositoryEmpleado
+    public interface IRepositoryEmpleado
     {
     }
 }
