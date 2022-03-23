@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.Repository
 {
-    internal interface IRepositoryRegistroFactura
+    public interface IRepositoryRegistroFactura
     {
     }
 }

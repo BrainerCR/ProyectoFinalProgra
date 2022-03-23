@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.DO.Objects
 {
-    internal class Empleado
+    public class Empleado
     {
     }
 }
