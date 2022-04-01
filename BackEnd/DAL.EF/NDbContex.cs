@@ -16,12 +16,12 @@ namespace DAL.EF
         }
 
         //public virtual DbSet<Cliente> Cliente { get; set; }
-        //public virtual DbSet<Distribuidor> Distribuidor { get; set; }
+        public virtual DbSet<Distribuidor> Distribuidor { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
-        //public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
         //public virtual DbSet<RegistroFactura> RegistroFactura { get; set; }
         public virtual DbSet<RolEmpleado> RolEmpleado { get; set; }
-        //public virtual DbSet<VinculoProducto> VinculoProducto { get; set; }
+        public virtual DbSet<VinculoProducto> VinculoProducto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,33 +48,33 @@ namespace DAL.EF
             //        .IsUnicode(false);
             //});
 
-            //modelBuilder.Entity<Distribuidor>(entity =>
-            //{
-            //    entity.HasKey(e => e.IdDistribuidor)
-            //        .HasName("PK__Distribu__258A56003D3E8C31");
+            modelBuilder.Entity<Distribuidor>(entity =>
+            {
+                entity.HasKey(e => e.IdDistribuidor)
+                    .HasName("PK__Distribu__258A56003D3E8C31");
 
-            //    entity.Property(e => e.CorreoDistribuidor)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.CorreoDistribuidor)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
+                entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
 
-            //    entity.Property(e => e.NombreDistribuidor)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.NombreDistribuidor)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.Provincia)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.Provincia)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.TelefonoDistribuidor)
-            //        .IsRequired()
-            //        .HasMaxLength(8)
-            //        .IsUnicode(false);
-            //});
+                entity.Property(e => e.TelefonoDistribuidor)
+                    .IsRequired()
+                    .HasMaxLength(8)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Empleado>(entity =>
             {
@@ -118,32 +118,32 @@ namespace DAL.EF
                     .HasConstraintName("FK__Empleado__IdRol__300424B4");
             });
 
-            //modelBuilder.Entity<Producto>(entity =>
-            //{
-            //    entity.HasKey(e => e.IdProducto)
-            //        .HasName("PK__Producto__098892103AADDB8D");
+            modelBuilder.Entity<Producto>(entity =>
+            {
+                entity.HasKey(e => e.IdProducto)
+                    .HasName("PK__Producto__098892103AADDB8D");
 
-            //    entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
+                entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
 
-            //    entity.Property(e => e.IdVinculoProducto).HasColumnName("IdVinculo_Producto");
+                entity.Property(e => e.IdVinculoProducto).HasColumnName("IdVinculo_Producto");
 
-            //    entity.Property(e => e.NombreProducto)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.NombreProducto)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.HasOne(d => d.IdDistribuidorNavigation)
-            //        .WithMany(p => p.Producto)
-            //        .HasForeignKey(d => d.IdDistribuidor)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK__Producto__IdDist__33D4B598");
+                entity.HasOne(d => d.IdDistribuidorNavigation)
+                    .WithMany(p => p.Producto)
+                    .HasForeignKey(d => d.IdDistribuidor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Producto__IdDist__33D4B598");
 
-            //    entity.HasOne(d => d.IdVinculoProductoNavigation)
-            //        .WithMany(p => p.Producto)
-            //        .HasForeignKey(d => d.IdVinculoProducto)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK__Producto__IdVinc__32E0915F");
-            //});
+                entity.HasOne(d => d.IdVinculoProductoNavigation)
+                    .WithMany(p => p.Producto)
+                    .HasForeignKey(d => d.IdVinculoProducto)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Producto__IdVinc__32E0915F");
+            });
 
             //modelBuilder.Entity<RegistroFactura>(entity =>
             //{
@@ -185,21 +185,21 @@ namespace DAL.EF
                     .IsUnicode(false);
             });
 
-            //modelBuilder.Entity<VinculoProducto>(entity =>
-            //{
-            //    entity.HasKey(e => e.IdVinculoProducto)
-            //        .HasName("PK__Vinculo___E01B484E6999E018");
+            modelBuilder.Entity<VinculoProducto>(entity =>
+            {
+                entity.HasKey(e => e.IdVinculoProducto)
+                    .HasName("PK__Vinculo___E01B484E6999E018");
 
-            //    entity.ToTable("Vinculo_Producto");
+                entity.ToTable("Vinculo_Producto");
 
-            //    entity.Property(e => e.IdVinculoProducto).HasColumnName("IdVinculo_Producto");
+                entity.Property(e => e.IdVinculoProducto).HasColumnName("IdVinculo_Producto");
 
-            //    entity.Property(e => e.NombreVinculoProducto)
-            //        .IsRequired()
-            //        .HasColumnName("NombreVinculo_Producto")
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
-            //});
+                entity.Property(e => e.NombreVinculoProducto)
+                    .IsRequired()
+                    .HasColumnName("NombreVinculo_Producto")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }
