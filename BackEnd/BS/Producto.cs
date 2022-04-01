@@ -1,10 +1,55 @@
-﻿using System;
+﻿using DAL.DO.Interfaces;
+using DAL.EF;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using data = DAL.DO.Objects;
 
-namespace DAL.DO.Objects
+namespace BS
 {
-    class Producto
+    public class Producto : ICRUD<data.Producto>
     {
+        private NDbContex context;
+
+        public Producto(NDbContex _context)
+        {
+            context = _context;
+        }
+
+        public void Delete(data.Producto t)
+        {
+            new DAL.Producto(context).Delete(t);
+        }
+
+        public IEnumerable<data.Producto> GetAll()
+        {
+            return new DAL.Producto(context).GetAll();
+        }
+
+        public async Task<IEnumerable<data.Producto>> GetAllWithAsync()
+        {
+            return await new DAL.Producto(context).GetAllWithAsync();
+        }
+
+        public data.Producto GetOneByID(int id)
+        {
+            return new DAL.Producto(context).GetOneByID(id);
+        }
+
+        public async Task<data.Producto> GetOneByIdWithAsync(int id)
+        {
+            return await new DAL.Producto(context).GetOneByIdWithAsync(id);
+        }
+
+        public void Insert(data.Producto t)
+        {
+            new DAL.Producto(context).Insert(t);
+        }
+
+        public void Update(data.Producto t)
+        {
+            new DAL.Producto(context).Update(t);
+        }
     }
 }
