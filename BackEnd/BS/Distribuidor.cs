@@ -18,22 +18,22 @@ namespace BS
 
         public void Delete(data.Distribuidor t)
         {
-            throw new NotImplementedException();
+            new DAL.Distribuidor(context).Delete(t);
         }
 
         public IEnumerable<data.Distribuidor> GetAll()
         {
-            throw new NotImplementedException();
+            return new DAL.Distribuidor(context).GetAll();
         }
 
-        public Task<IEnumerable<data.Distribuidor>> GetAllWithAsync()
+        public async Task<IEnumerable<data.Distribuidor>> GetAllWithAsync()
         {
-            throw new NotImplementedException();
+            return await new DAL.Distribuidor(context).GetAllWithAsync();
         }
 
         public data.Distribuidor GetOneByID(int id)
         {
-            throw new NotImplementedException();
+            return new DAL.Distribuidor(context).GetOneByID(id);
         }
 
         public Task<data.Distribuidor> GetOneByIdWithAsync(int id)
@@ -43,12 +43,12 @@ namespace BS
 
         public void Insert(data.Distribuidor t)
         {
-            throw new NotImplementedException();
+            new DAL.Distribuidor(context).Insert(t);
         }
 
         public void Update(data.Distribuidor t)
         {
-            throw new NotImplementedException();
+            new DAL.Distribuidor(context).Update(t);
         }
     }
 }
