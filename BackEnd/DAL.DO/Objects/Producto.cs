@@ -15,8 +15,7 @@ namespace DAL.DO.Objects
         public int IdVinculoProducto { get; set; }
         public int IdDistribuidor { get; set; }
 
-        //Descomentar cuando se tenga creado sus clases respectivas
-        //public virtual Distribuidor IdDistribuidorNavigation { get; set; }
+        public virtual Distribuidor IdDistribuidorNavigation { get; set; }
         public virtual VinculoProducto IdVinculoProductoNavigation { get; set; }
     }
 }
