@@ -19,7 +19,7 @@ namespace DAL.EF
         public virtual DbSet<Distribuidor> Distribuidor { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
-        //public virtual DbSet<RegistroFactura> RegistroFactura { get; set; }
+        public virtual DbSet<RegistroFactura> RegistroFactura { get; set; }
         public virtual DbSet<RolEmpleado> RolEmpleado { get; set; }
         public virtual DbSet<VinculoProducto> VinculoProducto { get; set; }
 
@@ -145,30 +145,30 @@ namespace DAL.EF
                     .HasConstraintName("FK__Producto__IdVinc__32E0915F");
             });
 
-            //modelBuilder.Entity<RegistroFactura>(entity =>
-            //{
-            //    entity.HasKey(e => e.IdRegistro)
-            //        .HasName("PK__Registro__FFA45A99029210CA");
+            modelBuilder.Entity<RegistroFactura>(entity =>
+            {
+                entity.HasKey(e => e.IdRegistro)
+                    .HasName("PK__Registro__FFA45A99029210CA");
 
-            //    entity.Property(e => e.CodigoRegistro)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.CodigoRegistro)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.FechaFactura).HasColumnType("datetime");
+                entity.Property(e => e.FechaFactura).HasColumnType("datetime");
 
-            //    entity.HasOne(d => d.IdClienteNavigation)
-            //        .WithMany(p => p.RegistroFactura)
-            //        .HasForeignKey(d => d.IdCliente)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK__RegistroF__IdCli__30F848ED");
+                entity.HasOne(d => d.IdClienteNavigation)
+                    .WithMany(p => p.RegistroFactura)
+                    .HasForeignKey(d => d.IdCliente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__RegistroF__IdCli__30F848ED");
 
-            //    entity.HasOne(d => d.IdEmpleadoNavigation)
-            //        .WithMany(p => p.RegistroFactura)
-            //        .HasForeignKey(d => d.IdEmpleado)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK__RegistroF__IdEmp__31EC6D26");
-            //});
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.RegistroFactura)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__RegistroF__IdEmp__31EC6D26");
+            });
 
             modelBuilder.Entity<RolEmpleado>(entity =>
             {

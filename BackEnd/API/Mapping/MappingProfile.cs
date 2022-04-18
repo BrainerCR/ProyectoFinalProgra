@@ -9,6 +9,7 @@ namespace API.Mapping
         {
             CreateMap<data.Empleado, DataModels.Empleado>().ReverseMap();
             CreateMap<data.RolEmpleado, DataModels.RolEmpleado>().ReverseMap();
+            CreateMap<data.RegistroFactura, DataModels.RegistroFactura>().ReverseMap();
         }
     }
 }
