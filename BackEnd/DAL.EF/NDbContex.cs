@@ -15,7 +15,7 @@ namespace DAL.EF
         {
         }
 
-        //public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Distribuidor> Distribuidor { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
@@ -25,28 +25,28 @@ namespace DAL.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Cliente>(entity =>
-            //{
-            //    entity.HasKey(e => e.IdCliente)
-            //        .HasName("PK__Cliente__D5946642BD41757F");
+            modelBuilder.Entity<Cliente>(entity =>
+            {
+                entity.HasKey(e => e.IdCliente)
+                    .HasName("PK__Cliente__D5946642BD41757F");
 
-            //    entity.Property(e => e.CorreoEmpleado)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.CorreoEmpleado)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
+                entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
 
-            //    entity.Property(e => e.NombreCliente)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
+                entity.Property(e => e.NombreCliente)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.Provincia)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false);
-            //});
+                entity.Property(e => e.Provincia)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Distribuidor>(entity =>
             {

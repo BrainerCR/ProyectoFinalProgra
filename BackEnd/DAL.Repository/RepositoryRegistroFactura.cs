@@ -1,7 +1,6 @@
 ﻿using DAL.DO.Objects;
 using DAL.EF;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
@@ -27,7 +26,7 @@ namespace DAL.Repository
             return await _db.RegistroFactura
             .Include(m => m.IdClienteNavigation)
                 .Include(m => m.IdEmpleadoNavigation)
-               .SingleOrDefaultAsync(m => m.IdFactura == id);
+               .SingleOrDefaultAsync(m => m.IdRegistro == id);
         }
 
         private NDbContex _db

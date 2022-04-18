@@ -9,7 +9,7 @@ namespace DAL.DO.Objects
         public Empleado()
         {
             //Descomentar hasta que se haga dicha clase
-            //RegistroFactura = new HashSet<RegistroFactura>();
+            RegistroFactura = new HashSet<RegistroFactura>();
         }
 
         public int IdEmpleado { get; set; }
@@ -23,6 +23,6 @@ namespace DAL.DO.Objects
         public int IdRol { get; set; }
 
         public virtual RolEmpleado IdRolNavigation { get; set; }
-        //public virtual ICollection<RegistroFactura> RegistroFactura { get; set; }
+        public virtual ICollection<RegistroFactura> RegistroFactura { get; set; }
     }
 }

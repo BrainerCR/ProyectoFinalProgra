@@ -28,7 +28,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DataModels.RolEmpleado>>> GetRolEmpleado()
         {
-            var res = new BS.RolEmpleado(_context).GetAll();
+            var res = new BS.Empleado(_context).GetAll();
 
             var mapaux = _mapper.Map<IEnumerable<data.RolEmpleado>, IEnumerable<DataModels.RolEmpleado>>(res).ToList();
 
