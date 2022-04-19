@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DAL.EF;
+﻿using DAL.EF;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
+using DAL.EF;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -14,11 +15,11 @@ namespace API.Controllers
     [ApiController]
     public class RolEmpleadoController : ControllerBase
     {
-        private readonly NDbContex _context;
+        private readonly DBContext _context;
 
         private readonly IMapper _mapper;
 
-        public RolEmpleadoController(NDbContex context, IMapper mapper)
+        public RolEmpleadoController(DBContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -28,7 +29,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DataModels.RolEmpleado>>> GetRolEmpleado()
         {
-            var res = new BS.Empleado(_context).GetAll();
+            var res = new BS.RolEmpleado(_context).GetAll();
 
             var mapaux = _mapper.Map<IEnumerable<data.RolEmpleado>, IEnumerable<DataModels.RolEmpleado>>(res).ToList();
 

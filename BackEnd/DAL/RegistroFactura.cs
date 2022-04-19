@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL.Repository;
-using System.Threading.Tasks;
-using DAL.DO.Interfaces;
-using data = DAL.DO.Objects;
+﻿using DAL.DO.Interfaces;
 using DAL.EF;
-
+using DAL.Repository;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using data = DAL.DO.Objects;
 namespace DAL
 {
-    public class RegistroFactura : ICRUD<data.RegistroFactura>
+   public class RegistroFactura : ICRUD<data.RegistroFactura>
     {
         private RepositoryRegistroFactura _repo = null;
 
-        public RegistroFactura(NDbContex context)
+        public RegistroFactura(DBContext context)
         {
             _repo = new RepositoryRegistroFactura(context);
         }
-        
+
         public void Delete(data.RegistroFactura t)
         {
             _repo.Delete(t);

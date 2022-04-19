@@ -1,7 +1,9 @@
 ﻿using DAL.DO.Interfaces;
 using DAL.EF;
 using DAL.Repository;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
 
@@ -11,9 +13,9 @@ namespace DAL
     {
         private RepositoryProducto _repo = null;
 
-        public Producto(NDbContex DbContext)
+        public Producto(DBContext context)
         {
-            _repo = new RepositoryProducto(DbContext);
+            _repo = new RepositoryProducto(context);
         }
 
         public void Delete(data.Producto t)

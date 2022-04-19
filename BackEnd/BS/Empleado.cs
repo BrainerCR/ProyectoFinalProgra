@@ -2,17 +2,16 @@
 using DAL.EF;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
-
 namespace BS
 {
     public class Empleado : ICRUD<data.Empleado>
     {
+        private DBContext context;
 
-        private NDbContex context;
-
-        public Empleado(NDbContex _context)
+        public Empleado(DBContext _context)
         {
             context = _context;
         }

@@ -3,8 +3,10 @@ using DAL.EF;
 using DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
+
 
 namespace DAL
 {
@@ -12,11 +14,10 @@ namespace DAL
     {
         private Repository<data.VinculoProducto> _repo = null;
 
-        public VinculoProducto(NDbContex DbContext)
+        public VinculoProducto(DBContext context)
         {
-            _repo = new Repository<data.VinculoProducto>(DbContext);
+            _repo = new Repository<data.VinculoProducto>(context);
         }
-
         public void Delete(data.VinculoProducto t)
         {
             _repo.Delete(t);

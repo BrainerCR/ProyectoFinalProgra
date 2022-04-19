@@ -1,20 +1,22 @@
-﻿using DAL.EF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+using DAL.DO.Objects;
+using DAL.EF;
 
 namespace DAL.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly NDbContex dbContext;
+        protected readonly DBContext dbContext;
 
-        public Repository(NDbContex context)
+        public Repository(DBContext context)
         {
             dbContext = context;
         }
-
         public void AddRange(IEnumerable<T> t)
         {
             dbContext.Set<T>().AddRange(t);
@@ -23,11 +25,6 @@ namespace DAL.Repository
         public IQueryable<T> AsQueryble()
         {
             return dbContext.Set<T>().AsQueryable();
-        }
-
-        public void Commit()
-        {
-            dbContext.SaveChanges();
         }
 
         public void Delete(T t)
@@ -41,6 +38,11 @@ namespace DAL.Repository
 
                 throw;
             }
+        }
+
+        public async Task<IEnumerable<T>> GetAllWithAsAsync()
+        {
+            return dbContext.Set<T>();
         }
 
         public IEnumerable<T> GetAll()
@@ -57,6 +59,8 @@ namespace DAL.Repository
         {
             return dbContext.Set<T>().Find(id);
         }
+
+
 
         public void Insert(T t)
         {
@@ -93,5 +97,11 @@ namespace DAL.Repository
         {
             dbContext.Set<T>().UpdateRange(t);
         }
+
+        public void Commit()
+        {
+            dbContext.SaveChanges();
+        }
     }
 }
+

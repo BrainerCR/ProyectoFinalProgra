@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DAL.EF;
+﻿using DAL.EF;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
+using DAL.EF;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -14,17 +15,17 @@ namespace API.Controllers
     [ApiController]
     public class RegistroFacturaController : ControllerBase
     {
-        private readonly NDbContex _context;
+        private readonly DBContext _context;
 
         private readonly IMapper _mapper;
 
-        public RegistroFacturaController(NDbContex context, IMapper mapper)
+        public RegistroFacturaController(DBContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        // GET: api/RegistroFactura
+        // GET: api/RegistroFacturas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DataModels.RegistroFactura>>> GetRegistroFactura()
         {
@@ -35,15 +36,15 @@ namespace API.Controllers
             return mapaux;
         }
 
-        // GET: api/RegistroFactura/5
+        // GET: api/RegistroFacturas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<DataModels.RegistroFactura>> GetRegistroFactura(int id)
         {
-            var historialFactura = new BS.RegistroFactura(_context).GetOneByID(id);
+            var registroFactura = new BS.RegistroFactura(_context).GetOneByID(id);
 
-            var mapaux = _mapper.Map<data.RegistroFactura, DataModels.RegistroFactura>(historialFactura);
+            var mapaux = _mapper.Map<data.RegistroFactura, DataModels.RegistroFactura>(registroFactura);
 
-            if (historialFactura == null)
+            if (registroFactura == null)
             {
                 return NotFound();
             }

@@ -2,6 +2,7 @@
 using DAL.EF;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
 
@@ -9,9 +10,9 @@ namespace BS
 {
     public class VinculoProducto : ICRUD<data.VinculoProducto>
     {
-        private NDbContex context;
+        private DBContext context;
 
-        public VinculoProducto(NDbContex _context)
+        public VinculoProducto(DBContext _context)
         {
             context = _context;
         }

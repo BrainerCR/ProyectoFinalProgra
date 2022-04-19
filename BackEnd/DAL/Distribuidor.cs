@@ -13,9 +13,9 @@ namespace DAL
     {
         private Repository<data.Distribuidor> _repo = null;
 
-        public Distribuidor(NDbContex DbContext)
+        public Distribuidor(DBContext context)
         {
-            _repo = new Repository<data.Distribuidor>(DbContext);
+            _repo = new Repository<data.Distribuidor>(context);
         }
 
         public void Delete(data.Distribuidor t)

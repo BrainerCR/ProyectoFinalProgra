@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DAL.DO.Interfaces;
+﻿using DAL.DO.Interfaces;
 using DAL.EF;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using data = DAL.DO.Objects;
 
-namespace DAL
+namespace BS
 {
     public class Cliente : ICRUD<data.Cliente>
     {
-        private NDbContex context;
+        private DBContext context;
 
-        public Cliente(NDbContex _context)
+        public Cliente(DBContext _context)
         {
             context = _context;
         }
 
         public void Delete(data.Cliente t)
         {
-            new DAL.Cliente(context).Delete(t); ;
+            new DAL.Cliente(context).Delete(t);
         }
 
         public IEnumerable<data.Cliente> GetAll()

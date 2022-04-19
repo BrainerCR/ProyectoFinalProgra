@@ -6,7 +6,7 @@ using data = DAL.DO.Objects;
 
 namespace DAL.Repository
 {
-    interface IRepositoryRegistroFactura : IRepository<data.RegistroFactura>
+    public interface IRepositoryRegistroFactura : IRepository<data.RegistroFactura>
     {
         Task<IEnumerable<data.RegistroFactura>> GetAllWithAsAsync();
         Task<data.RegistroFactura> GetOneByIdAsAsync(int id);

@@ -1,18 +1,21 @@
 ﻿using DAL.DO.Objects;
-using DAL.EF;
-using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
+using DAL.EF;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repository
 {
     public class RepositoryRegistroFactura : Repository<data.RegistroFactura>, IRepositoryRegistroFactura
     {
-        public RepositoryRegistroFactura(NDbContex context) : base(context)
+        public RepositoryRegistroFactura(DBContext context) : base(context)
         {
 
         }
+
         public async Task<IEnumerable<RegistroFactura>> GetAllWithAsAsync()
         {
             return await _db.RegistroFactura
@@ -29,9 +32,9 @@ namespace DAL.Repository
                .SingleOrDefaultAsync(m => m.IdRegistro == id);
         }
 
-        private NDbContex _db
+        private DBContext _db
         {
-            get { return dbContext as NDbContex; }
+            get { return dbContext as DBContext; }
         }
     }
 }

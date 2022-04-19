@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.DO.Objects
 {
-    public partial class VinculoProducto
+    public class VinculoProducto
     {
         public VinculoProducto()
         {

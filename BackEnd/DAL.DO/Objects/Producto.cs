@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.DO.Objects
 {
-    public partial class Producto
+    public class Producto
     {
         public int IdProducto { get; set; }
         public DateTime FechaIngreso { get; set; }

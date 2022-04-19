@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DAL.DO.Interfaces;
+﻿using DAL.DO.Interfaces;
 using DAL.EF;
 using DAL.Repository;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using data = DAL.DO.Objects;
-
 namespace DAL
 {
     public class Cliente : ICRUD<data.Cliente>
     {
         private Repository<data.Cliente> _repo = null;
 
-        public Cliente(NDbContex context)
+        public Cliente(DBContext context)
         {
             _repo = new Repository<data.Cliente>(context);
         }

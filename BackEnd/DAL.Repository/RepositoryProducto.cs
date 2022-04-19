@@ -1,15 +1,18 @@
 ﻿using DAL.DO.Objects;
-using DAL.EF;
-using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
+using DAL.EF;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DAL.Repository
 {
     public class RepositoryProducto : Repository<data.Producto>, IRepositoryProducto
     {
-        public RepositoryProducto(NDbContex context) : base(context)
+        public RepositoryProducto(DBContext context) : base(context)
         {
 
         }
@@ -30,9 +33,9 @@ namespace DAL.Repository
                .SingleOrDefaultAsync(m => m.IdProducto == id);
         }
 
-        private NDbContex _db
+        private DBContext _db
         {
-            get { return dbContext as NDbContex; }
+            get { return dbContext as DBContext; }
         }
     }
 }

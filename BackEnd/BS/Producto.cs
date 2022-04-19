@@ -10,9 +10,9 @@ namespace BS
 {
     public class Producto : ICRUD<data.Producto>
     {
-        private NDbContex context;
+        private DBContext context;
 
-        public Producto(NDbContex _context)
+        public Producto(DBContext _context)
         {
             context = _context;
         }

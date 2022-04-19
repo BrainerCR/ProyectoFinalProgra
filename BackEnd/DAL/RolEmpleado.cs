@@ -3,6 +3,8 @@ using DAL.EF;
 using DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using data = DAL.DO.Objects;
 
 namespace DAL
@@ -11,10 +13,11 @@ namespace DAL
     {
         private Repository<data.RolEmpleado> _repo = null;
 
-        public RolEmpleado(NDbContex DbContext)
+        public RolEmpleado(DBContext context)
         {
-            _repo = new Repository<data.RolEmpleado>(DbContext);
+            _repo = new Repository<data.RolEmpleado>(context);
         }
+
         public void Delete(data.RolEmpleado t)
         {
             _repo.Delete(t);
@@ -26,7 +29,7 @@ namespace DAL
             return _repo.GetAll();
         }
 
-        public System.Threading.Tasks.Task<IEnumerable<data.RolEmpleado>> GetAllWithAsync()
+        public Task<IEnumerable<data.RolEmpleado>> GetAllWithAsync()
         {
             throw new NotImplementedException();
         }
@@ -36,7 +39,7 @@ namespace DAL
             return _repo.GetOneById(id);
         }
 
-        public System.Threading.Tasks.Task<data.RolEmpleado> GetOneByIdWithAsync(int id)
+        public Task<data.RolEmpleado> GetOneByIdWithAsync(int id)
         {
             throw new NotImplementedException();
         }

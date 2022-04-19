@@ -3,17 +3,18 @@ using DAL.EF;
 using DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using data = DAL.DO.Objects;
-
 namespace DAL
 {
     public class Empleado : ICRUD<data.Empleado>
     {
         private RepositoryEmpleado _repo = null;
 
-        public Empleado(NDbContex DbContext)
+        public Empleado(DBContext context)
         {
-            _repo = new RepositoryEmpleado(DbContext);
+            _repo = new RepositoryEmpleado(context);
         }
 
         public void Delete(data.Empleado t)
@@ -27,7 +28,7 @@ namespace DAL
             return _repo.GetAll();
         }
 
-        public async System.Threading.Tasks.Task<IEnumerable<data.Empleado>> GetAllWithAsync()
+        public async Task<IEnumerable<data.Empleado>> GetAllWithAsync()
         {
             return await _repo.GetAllWithAsAsync();
         }
@@ -37,7 +38,7 @@ namespace DAL
             return _repo.GetOneById(id);
         }
 
-        public async System.Threading.Tasks.Task<data.Empleado> GetOneByIdWithAsync(int id)
+        public async Task<data.Empleado> GetOneByIdWithAsync(int id)
         {
             return await _repo.GetOneByIdAsAsync(id);
         }

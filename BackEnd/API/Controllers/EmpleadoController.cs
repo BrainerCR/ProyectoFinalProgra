@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DAL.EF;
+﻿using DAL.EF;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
+using DAL.EF;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -14,11 +15,11 @@ namespace API.Controllers
     [ApiController]
     public class EmpleadoController : ControllerBase
     {
-        private readonly NDbContex _context;
+        private readonly DBContext _context;
 
         private readonly IMapper _mapper;
 
-        public EmpleadoController(NDbContex context, IMapper mapper)
+        public EmpleadoController(DBContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -30,7 +31,7 @@ namespace API.Controllers
         {
             var res = await new BS.Empleado(_context).GetAllWithAsync();
 
-            var mapaux = _mapper.Map<IEnumerable<data.Empleado>, IEnumerable<DataModels.Empleado>>(res).ToList();
+            var mapaux = _mapper.Map<IEnumerable<data.Empleado>, IEnumerable<DataModels.Empleado>>(res).ToList(); 
 
             return mapaux;
         }
@@ -42,6 +43,9 @@ namespace API.Controllers
             var empleado = new BS.Empleado(_context).GetOneByID(id);
 
             var mapaux = _mapper.Map<data.Empleado, DataModels.Empleado>(empleado);
+
+
+
 
             if (empleado == null)
             {

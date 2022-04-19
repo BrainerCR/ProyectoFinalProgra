@@ -7,23 +7,24 @@ using System.Collections.Generic;
 
 namespace API.W.Models
 {
-    public partial class Cliente
+    public partial class Proveedor
     {
-        public Cliente()
+        public Proveedor()
         {
-            HistorialFactura = new HashSet<HistorialFactura>();
+            Producto = new HashSet<Producto>();
         }
 
-        public int IdCliente { get; set; }
-        public int CedulaCliente { get; set; }
+        public int IdProveedor { get; set; }
+        public int CedulaProveedor { get; set; }
         public DateTime FechaIngreso { get; set; }
-        public string NombreCliente { get; set; }
-        public string CorreoEmpleado { get; set; }
+        public string NombreProveedor { get; set; }
+        public string CorreoProveedor { get; set; }
         public string Provincia { get; set; }
         public string Canton { get; set; }
         public string Distrito { get; set; }
-        public string TelefonoEmpleado { get; set; }
+        public string TelefonoProveedor { get; set; }
+        public string CuentaBancariaProveedor { get; set; }
 
-        public virtual ICollection<HistorialFactura> HistorialFactura { get; set; }
+        public virtual ICollection<Producto> Producto { get; set; }
     }
 }

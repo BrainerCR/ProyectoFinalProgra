@@ -2,6 +2,7 @@
 using DAL.EF;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using data = DAL.DO.Objects;
 
@@ -9,9 +10,10 @@ namespace BS
 {
     public class Distribuidor : ICRUD<data.Distribuidor>
     {
-        private NDbContex context;
+        
+        private DBContext context;
 
-        public Distribuidor(NDbContex _context)
+        public Distribuidor(DBContext _context)
         {
             context = _context;
         }
