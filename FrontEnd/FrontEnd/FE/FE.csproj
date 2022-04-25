@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Servicios\4fbr1s0p.1dy~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.24">
       <PrivateAssets>all</PrivateAssets>
@@ -15,6 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NEST" Version="7.17.1" />
   </ItemGroup>
 
 </Project>

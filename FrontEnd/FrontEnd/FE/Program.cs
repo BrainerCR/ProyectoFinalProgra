@@ -11,6 +11,8 @@ namespace FE
 {
     public class Program
     {
+        public static string baseurl = "http://localhost:37088/";
+
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
