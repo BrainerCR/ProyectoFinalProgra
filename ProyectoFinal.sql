@@ -1,6 +1,6 @@
 USE [ProyectoFinal]
 
-/****** Object:  Table [dbo].[Cliente]    Script Date: 8/25/2021 10:46:31 PM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -139,7 +139,7 @@ GO
 ALTER TABLE [dbo].[Producto]  WITH CHECK ADD FOREIGN KEY([IdDistribuidor])
 REFERENCES [dbo].[Distribuidor] ([IdDistribuidor])
 GO
-/****** Object:  StoredProcedure [dbo].[GET_SEG_USUARIO]    Script Date: 8/25/2021 10:46:31 PM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
