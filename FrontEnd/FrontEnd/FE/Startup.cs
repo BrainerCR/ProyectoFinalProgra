@@ -29,6 +29,8 @@ namespace FE
 
             services.AddScoped<IClienteServicio, ClienteServicio>();
             services.AddScoped<IDistribuidorServicio, DistribuidorServicio>();
+            services.AddScoped<IEmpleadoServicio, EmpleadoSerivicio>();
+            services.AddScoped<IProductoServicio, ProductoServicio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
