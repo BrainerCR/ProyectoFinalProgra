@@ -1,5 +1,4 @@
 ﻿using FE.Models;
-using Nest;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FE.Servicios
 {
-    public class ClienteServicio : IClienteServicio
+    public class RolEmpleadoServicio : IRolEmpleadoServicio
     {
-        public void Delete(Cliente t)
+        public void Delete(RolEmpleado t)
         {
             try
             {
@@ -20,7 +19,7 @@ namespace FE.Servicios
                     cl.BaseAddress = new Uri(Program.baseurl);
                     cl.DefaultRequestHeaders.Clear();
                     cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage res = cl.DeleteAsync("api/Cliente/" + t.IdCliente.ToString()).Result;
+                    HttpResponseMessage res = cl.DeleteAsync("api/RolEmpleado/" + t.IdRol.ToString()).Result;
 
                     if (!res.IsSuccessStatusCode)
                     {
@@ -34,85 +33,85 @@ namespace FE.Servicios
             }
         }
 
-        public IEnumerable<Cliente> GetAll()
+        public IEnumerable<RolEmpleado> GetAll()
         {
-            List<Models.Cliente> aux = new List<Models.Cliente>();
+            List<Models.RolEmpleado> aux = new List<Models.RolEmpleado>();
 
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = cl.GetAsync("api/Cliente").Result;
+                HttpResponseMessage res = cl.GetAsync("api/RolEmpleado").Result;
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<List<Models.Cliente>>(auxres);
+                    aux = JsonConvert.DeserializeObject<List<Models.RolEmpleado>>(auxres);
                 }
             }
             return aux;
         }
 
-        public async Task<IEnumerable<Cliente>> GetAllAsync()
+        public async Task<IEnumerable<RolEmpleado>> GetAllAsync()
         {
-            List<Models.Cliente> aux = new List<Models.Cliente>();
+            List<Models.RolEmpleado> aux = new List<Models.RolEmpleado>();
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = await cl.GetAsync("api/Cliente");
+                HttpResponseMessage res = await cl.GetAsync("api/RolEmpleado");
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<List<Models.Cliente>>(auxres);
+                    aux = JsonConvert.DeserializeObject<List<Models.RolEmpleado>>(auxres);
                 }
             }
             return aux;
         }
 
-        public Cliente GetOneById(int id)
+        public RolEmpleado GetOneById(int id)
         {
-            Models.Cliente aux = new Models.Cliente();
+            Models.RolEmpleado aux = new Models.RolEmpleado();
 
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = cl.GetAsync("api/Cliente/" + id).Result;
+                HttpResponseMessage res = cl.GetAsync("api/RolEmpleado/" + id).Result;
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<Models.Cliente>(auxres);
+                    aux = JsonConvert.DeserializeObject<Models.RolEmpleado>(auxres);
                 }
             }
             return aux;
         }
 
-        public async Task<Cliente> GetOneByIdAsync(int id)
+        public async Task<RolEmpleado> GetOneByIdAsync(int id)
         {
-            Models.Cliente aux = new Models.Cliente();
+            Models.RolEmpleado aux = new Models.RolEmpleado();
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = await cl.GetAsync("api/Cliente/" + id);
+                HttpResponseMessage res = await cl.GetAsync("api/RolEmpleado/" + id);
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<Models.Cliente>(auxres);
+                    aux = JsonConvert.DeserializeObject<Models.RolEmpleado>(auxres);
                 }
             }
             return aux;
         }
 
-        public void Insert(Cliente t)
+        public void Insert(RolEmpleado t)
         {
             try
             {
@@ -123,7 +122,7 @@ namespace FE.Servicios
                     var buffer = System.Text.Encoding.UTF8.GetBytes(content);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                    var postTask = cl.PostAsync("api/Cliente", byteContent).Result;
+                    var postTask = cl.PostAsync("api/RolEmpleado", byteContent).Result;
 
                     if (!postTask.IsSuccessStatusCode)
                     {
@@ -137,7 +136,7 @@ namespace FE.Servicios
             }
         }
 
-        public void Update(Cliente t)
+        public void Update(RolEmpleado t)
         {
             try
             {
@@ -148,7 +147,7 @@ namespace FE.Servicios
                     var buffer = System.Text.Encoding.UTF8.GetBytes(content);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                    var postTask = cl.PutAsync("api/Cliente/" + t.IdCliente, byteContent).Result;
+                    var postTask = cl.PutAsync("api/RolEmpleado/" + t.IdRol, byteContent).Result;
 
 
                     if (!postTask.IsSuccessStatusCode)

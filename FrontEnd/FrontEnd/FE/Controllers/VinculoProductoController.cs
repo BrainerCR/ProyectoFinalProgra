@@ -1,6 +1,5 @@
 ﻿using FE.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,25 +7,22 @@ using System.Threading.Tasks;
 
 namespace FE.Controllers
 {
-    public class EmpleadoController : Controller
+    public class VinculoProductoController : Controller
     {
-        
-        RolEmpleadoServicio rolEmpleados = new RolEmpleadoServicio();
+        private readonly IVinculoProductoServicio vinculoProductoServicio;
 
-        private readonly IEmpleadoServicio empleadoServicio;
-
-        public EmpleadoController(IEmpleadoServicio _empleadoServicio)
+        public VinculoProductoController(IVinculoProductoServicio _vinculoProductoServicio)
         {
-            empleadoServicio = _empleadoServicio;
+            vinculoProductoServicio = _vinculoProductoServicio;
         }
 
-        // GET: Empleadoes
+        // GET: VinculoProductoes
         public async Task<IActionResult> Index()
         {
-            return View(empleadoServicio.GetAll());
+            return View(vinculoProductoServicio.GetAll());
         }
 
-        // GET: Empleadoes/Details/5
+        // GET: VinculoProductoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,41 +30,38 @@ namespace FE.Controllers
                 return NotFound();
             }
 
-            var empleado = empleadoServicio.GetOneById((int)id);
+            var vinculoProducto = vinculoProductoServicio.GetOneById((int)id);
 
-            if (empleado == null)
+            if (vinculoProducto == null)
             {
                 return NotFound();
             }
 
-            return View(empleado);
+            return View(vinculoProducto);
         }
 
-        // GET: Empleadoes/Create
+        // GET: VinculoProductoes/Create
         public IActionResult Create()
         {
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol");
             return View();
         }
 
-        // POST: Empleadoes/Create
+        // POST: VinculoProductoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdEmpleado,CedulaEmpleado,NombreEmpleado,ApellidoEmpleado,CorreoEmpleado,ClaveEmpleado,Provincia,TelefonoEmpleado,IdRol")] Models.Empleado empleado)
+        public async Task<IActionResult> Create([Bind("IdVinculoProducto,NombreVinculoProducto")] Models.VinculoProducto vinculoProducto)
         {
             if (ModelState.IsValid)
             {
-                empleadoServicio.Insert(empleado);
+                vinculoProductoServicio.Insert(vinculoProducto);
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol", empleado.IdRol);
-            return View(empleado);
+            return View(vinculoProducto);
         }
 
-        // GET: Empleadoes/Edit/5
+        // GET: VinculoProductoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,25 +69,23 @@ namespace FE.Controllers
                 return NotFound();
             }
 
-            var empleado = empleadoServicio.GetOneById((int)id);
+            var vinculoProducto = vinculoProductoServicio.GetOneById((int)id);
 
-            if (empleado == null)
+            if (vinculoProducto == null)
             {
                 return NotFound();
             }
-
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol", empleado.IdRol);
-            return View(empleado);
+            return View(vinculoProducto);
         }
 
-        // POST: Empleadoes/Edit/5
+        // POST: VinculoProductoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdEmpleado,CedulaEmpleado,NombreEmpleado,ApellidoEmpleado,CorreoEmpleado,ClaveEmpleado,Provincia,TelefonoEmpleado,IdRol")] Models.Empleado empleado)
+        public async Task<IActionResult> Edit(int id, [Bind("IdVinculoProducto,NombreVinculoProducto")] Models.VinculoProducto vinculoProducto)
         {
-            if (id != empleado.IdEmpleado)
+            if (id != vinculoProducto.IdVinculoProducto)
             {
                 return NotFound();
             }
@@ -103,11 +94,12 @@ namespace FE.Controllers
             {
                 try
                 {
-                    empleadoServicio.Update(empleado);
+                    vinculoProductoServicio.Update(vinculoProducto);
+
                 }
                 catch (Exception ee)
                 {
-                    if (!EmpleadoExists(empleado.IdEmpleado))
+                    if (!VinculoProductoExists(vinculoProducto.IdVinculoProducto))
                     {
                         return NotFound();
                     }
@@ -118,12 +110,10 @@ namespace FE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol", empleado.IdRol);
-            return View(empleado);
+            return View(vinculoProducto);
         }
 
-        // GET: Empleadoes/Delete/5
+        // GET: VinculoProductoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,29 +121,29 @@ namespace FE.Controllers
                 return NotFound();
             }
 
-            var empleado = empleadoServicio.GetOneById((int)id);
+            var vinculoProducto = vinculoProductoServicio.GetOneById((int)id);
 
-            if (empleado == null)
+            if (vinculoProducto == null)
             {
                 return NotFound();
             }
 
-            return View(empleado);
+            return View(vinculoProducto);
         }
 
-        // POST: Empleadoes/Delete/5
+        // POST: VinculoProductoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var empleado = empleadoServicio.GetOneById((int)id);
-            empleadoServicio.Delete(empleado);
+            var vinculo = vinculoProductoServicio.GetOneById((int)id);
+            vinculoProductoServicio.Delete(vinculo);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpleadoExists(int id)
+        private bool VinculoProductoExists(int id)
         {
-            return (empleadoServicio.GetOneById((int)id) != null);
+            return (vinculoProductoServicio.GetOneById((int)id) != null);
         }
     }
 }

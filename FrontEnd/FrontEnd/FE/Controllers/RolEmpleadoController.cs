@@ -1,6 +1,5 @@
 ﻿using FE.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,25 +7,22 @@ using System.Threading.Tasks;
 
 namespace FE.Controllers
 {
-    public class EmpleadoController : Controller
+    public class RolEmpleadoController : Controller
     {
-        
-        RolEmpleadoServicio rolEmpleados = new RolEmpleadoServicio();
+        private readonly IRolEmpleadoServicio rolEmpleadoServicio;
 
-        private readonly IEmpleadoServicio empleadoServicio;
-
-        public EmpleadoController(IEmpleadoServicio _empleadoServicio)
+        public RolEmpleadoController(IRolEmpleadoServicio _rolEmpleadoServicio)
         {
-            empleadoServicio = _empleadoServicio;
+            rolEmpleadoServicio = _rolEmpleadoServicio;
         }
 
-        // GET: Empleadoes
+        // GET: RolEmpleadoes
         public async Task<IActionResult> Index()
         {
-            return View(empleadoServicio.GetAll());
+            return View(rolEmpleadoServicio.GetAll());
         }
 
-        // GET: Empleadoes/Details/5
+        // GET: RolEmpleadoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,41 +30,38 @@ namespace FE.Controllers
                 return NotFound();
             }
 
-            var empleado = empleadoServicio.GetOneById((int)id);
+            var rolEmpleado = rolEmpleadoServicio.GetOneById((int)id);
 
-            if (empleado == null)
+            if (rolEmpleado == null)
             {
                 return NotFound();
             }
 
-            return View(empleado);
+            return View(rolEmpleado);
         }
 
-        // GET: Empleadoes/Create
+        // GET: RolEmpleadoes/Create
         public IActionResult Create()
         {
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol");
             return View();
         }
 
-        // POST: Empleadoes/Create
+        // POST: RolEmpleadoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdEmpleado,CedulaEmpleado,NombreEmpleado,ApellidoEmpleado,CorreoEmpleado,ClaveEmpleado,Provincia,TelefonoEmpleado,IdRol")] Models.Empleado empleado)
+        public async Task<IActionResult> Create([Bind("IdRol,NombreRol")] Models.RolEmpleado rolEmpleado)
         {
             if (ModelState.IsValid)
             {
-                empleadoServicio.Insert(empleado);
+                rolEmpleadoServicio.Insert(rolEmpleado);
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol", empleado.IdRol);
-            return View(empleado);
+            return View(rolEmpleado);
         }
 
-        // GET: Empleadoes/Edit/5
+        // GET: RolEmpleadoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,25 +69,23 @@ namespace FE.Controllers
                 return NotFound();
             }
 
-            var empleado = empleadoServicio.GetOneById((int)id);
+            var rolEmpleado = rolEmpleadoServicio.GetOneById((int)id);
 
-            if (empleado == null)
+            if (rolEmpleado == null)
             {
                 return NotFound();
             }
-
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol", empleado.IdRol);
-            return View(empleado);
+            return View(rolEmpleado);
         }
 
-        // POST: Empleadoes/Edit/5
+        // POST: RolEmpleadoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdEmpleado,CedulaEmpleado,NombreEmpleado,ApellidoEmpleado,CorreoEmpleado,ClaveEmpleado,Provincia,TelefonoEmpleado,IdRol")] Models.Empleado empleado)
+        public async Task<IActionResult> Edit(int id, [Bind("IdRol,NombreRol")] Models.RolEmpleado rolEmpleado)
         {
-            if (id != empleado.IdEmpleado)
+            if (id != rolEmpleado.IdRol)
             {
                 return NotFound();
             }
@@ -103,11 +94,11 @@ namespace FE.Controllers
             {
                 try
                 {
-                    empleadoServicio.Update(empleado);
+                    rolEmpleadoServicio.Update(rolEmpleado);
                 }
                 catch (Exception ee)
                 {
-                    if (!EmpleadoExists(empleado.IdEmpleado))
+                    if (!RolEmpleadoExists(rolEmpleado.IdRol))
                     {
                         return NotFound();
                     }
@@ -118,12 +109,10 @@ namespace FE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["IdRol"] = new SelectList(rolEmpleados.GetAll(), "IdRol", "NombreRol", empleado.IdRol);
-            return View(empleado);
+            return View(rolEmpleado);
         }
 
-        // GET: Empleadoes/Delete/5
+        // GET: RolEmpleadoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,29 +120,29 @@ namespace FE.Controllers
                 return NotFound();
             }
 
-            var empleado = empleadoServicio.GetOneById((int)id);
+            var rolEmpleado = rolEmpleadoServicio.GetOneById((int)id);
 
-            if (empleado == null)
+            if (rolEmpleado == null)
             {
                 return NotFound();
             }
 
-            return View(empleado);
+            return View(rolEmpleado);
         }
 
-        // POST: Empleadoes/Delete/5
+        // POST: RolEmpleadoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var empleado = empleadoServicio.GetOneById((int)id);
-            empleadoServicio.Delete(empleado);
+            var rolEmpleado = rolEmpleadoServicio.GetOneById((int)id);
+            rolEmpleadoServicio.Delete(rolEmpleado);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpleadoExists(int id)
+        private bool RolEmpleadoExists(int id)
         {
-            return (empleadoServicio.GetOneById((int)id) != null);
+            return (rolEmpleadoServicio.GetOneById((int)id) != null);
         }
     }
 }

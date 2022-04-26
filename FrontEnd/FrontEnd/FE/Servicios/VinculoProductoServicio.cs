@@ -1,5 +1,4 @@
 ﻿using FE.Models;
-using Nest;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FE.Servicios
 {
-    public class ClienteServicio : IClienteServicio
+    public class VinculoProductoServicio : IVinculoProductoServicio
     {
-        public void Delete(Cliente t)
+        public void Delete(VinculoProducto t)
         {
             try
             {
@@ -20,7 +19,7 @@ namespace FE.Servicios
                     cl.BaseAddress = new Uri(Program.baseurl);
                     cl.DefaultRequestHeaders.Clear();
                     cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage res = cl.DeleteAsync("api/Cliente/" + t.IdCliente.ToString()).Result;
+                    HttpResponseMessage res = cl.DeleteAsync("api/VinculoProducto/" + t.IdVinculoProducto.ToString()).Result;
 
                     if (!res.IsSuccessStatusCode)
                     {
@@ -34,85 +33,85 @@ namespace FE.Servicios
             }
         }
 
-        public IEnumerable<Cliente> GetAll()
+        public IEnumerable<VinculoProducto> GetAll()
         {
-            List<Models.Cliente> aux = new List<Models.Cliente>();
+            List<Models.VinculoProducto> aux = new List<Models.VinculoProducto>();
 
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = cl.GetAsync("api/Cliente").Result;
+                HttpResponseMessage res = cl.GetAsync("api/VinculoProducto").Result;
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<List<Models.Cliente>>(auxres);
+                    aux = JsonConvert.DeserializeObject<List<Models.VinculoProducto>>(auxres);
                 }
             }
             return aux;
         }
 
-        public async Task<IEnumerable<Cliente>> GetAllAsync()
+        public async Task<IEnumerable<VinculoProducto>> GetAllAsync()
         {
-            List<Models.Cliente> aux = new List<Models.Cliente>();
+            List<Models.VinculoProducto> aux = new List<Models.VinculoProducto>();
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = await cl.GetAsync("api/Cliente");
+                HttpResponseMessage res = await cl.GetAsync("api/VinculoProducto");
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<List<Models.Cliente>>(auxres);
+                    aux = JsonConvert.DeserializeObject<List<Models.VinculoProducto>>(auxres);
                 }
             }
             return aux;
         }
 
-        public Cliente GetOneById(int id)
+        public VinculoProducto GetOneById(int id)
         {
-            Models.Cliente aux = new Models.Cliente();
+            Models.VinculoProducto aux = new Models.VinculoProducto();
 
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = cl.GetAsync("api/Cliente/" + id).Result;
+                HttpResponseMessage res = cl.GetAsync("api/VinculoProducto/" + id).Result;
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<Models.Cliente>(auxres);
+                    aux = JsonConvert.DeserializeObject<Models.VinculoProducto>(auxres);
                 }
             }
             return aux;
         }
 
-        public async Task<Cliente> GetOneByIdAsync(int id)
+        public async Task<VinculoProducto> GetOneByIdAsync(int id)
         {
-            Models.Cliente aux = new Models.Cliente();
+            Models.VinculoProducto aux = new Models.VinculoProducto();
             using (var cl = new HttpClient())
             {
                 cl.BaseAddress = new Uri(Program.baseurl);
                 cl.DefaultRequestHeaders.Clear();
                 cl.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage res = await cl.GetAsync("api/Cliente/" + id);
+                HttpResponseMessage res = await cl.GetAsync("api/VinculoProducto/" + id);
 
                 if (res.IsSuccessStatusCode)
                 {
                     var auxres = res.Content.ReadAsStringAsync().Result;
-                    aux = JsonConvert.DeserializeObject<Models.Cliente>(auxres);
+                    aux = JsonConvert.DeserializeObject<Models.VinculoProducto>(auxres);
                 }
             }
             return aux;
         }
 
-        public void Insert(Cliente t)
+        public void Insert(VinculoProducto t)
         {
             try
             {
@@ -123,7 +122,7 @@ namespace FE.Servicios
                     var buffer = System.Text.Encoding.UTF8.GetBytes(content);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                    var postTask = cl.PostAsync("api/Cliente", byteContent).Result;
+                    var postTask = cl.PostAsync("api/VinculoProducto", byteContent).Result;
 
                     if (!postTask.IsSuccessStatusCode)
                     {
@@ -137,7 +136,7 @@ namespace FE.Servicios
             }
         }
 
-        public void Update(Cliente t)
+        public void Update(VinculoProducto t)
         {
             try
             {
@@ -148,7 +147,7 @@ namespace FE.Servicios
                     var buffer = System.Text.Encoding.UTF8.GetBytes(content);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                    var postTask = cl.PutAsync("api/Cliente/" + t.IdCliente, byteContent).Result;
+                    var postTask = cl.PutAsync("api/VinculoProducto/" + t.IdVinculoProducto, byteContent).Result;
 
 
                     if (!postTask.IsSuccessStatusCode)

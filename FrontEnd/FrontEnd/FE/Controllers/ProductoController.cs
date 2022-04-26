@@ -13,7 +13,7 @@ namespace FE.Controllers
         private readonly IProductoServicio productoServicio;
 
         DistribuidorServicio proveedor = new DistribuidorServicio();
-        //FamiliaProductoServices familiaP = new FamiliaProductoServices();
+        VinculoProductoServicio familiaP = new VinculoProductoServicio();
 
         public ProductoController(IProductoServicio _productoServicio)
         {
@@ -47,8 +47,8 @@ namespace FE.Controllers
         // GET: Productoes/Create
         public IActionResult Create()
         {
-            //ViewData["IdFamiliaProducto"] = new SelectList(familiaP.GetAll(), "IdFamiliaProducto", "NombreFamiliaProducto");
             ViewData["IdDistribuidor"] = new SelectList(proveedor.GetAll(), "IdDistribuidor", "CorreoDistribuidor");
+            ViewData["IdVinculoProducto"] = new SelectList(familiaP.GetAll(), "IdVinculoProducto", "NombreVinculoProducto");
             return View();
         }
 
@@ -64,7 +64,9 @@ namespace FE.Controllers
                 productoServicio.Insert(producto);
                 return RedirectToAction(nameof(Index));
             }
-            
+
+            ViewData["IdDistribuidor"] = new SelectList(proveedor.GetAll(), "IdDistribuidor", "CorreoDistribuidor", producto.IdDistribuidor);
+            ViewData["IdVinculoProducto"] = new SelectList(familiaP.GetAll(), "IdVinculoProducto", "NombreVinculoProducto", producto.IdVinculoProducto);
             return View(producto);
         }
 
@@ -82,7 +84,9 @@ namespace FE.Controllers
             {
                 return NotFound();
             }
-            
+
+            ViewData["IdDistribuidor"] = new SelectList(proveedor.GetAll(), "IdDistribuidor", "CorreoDistribuidor", producto.IdDistribuidor);
+            ViewData["IdVinculoProducto"] = new SelectList(familiaP.GetAll(), "IdVinculoProducto", "NombreVinculoProducto", producto.IdVinculoProducto);
             return View(producto);
         }
 
@@ -117,7 +121,9 @@ namespace FE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            
+
+            ViewData["IdDistribuidor"] = new SelectList(proveedor.GetAll(), "IdDistribuidor", "CorreoDistribuidor", producto.IdDistribuidor);
+            ViewData["IdVinculoProducto"] = new SelectList(familiaP.GetAll(), "IdVinculoProducto", "NombreVinculoProducto", producto.IdVinculoProducto);
             return View(producto);
         }
 
