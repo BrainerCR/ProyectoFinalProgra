@@ -23,7 +23,13 @@ namespace FE
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", Config =>
+            {
+                Config.Cookie.Name = "Grandmas.cookie";
+                Config.LoginPath = "/Login/Login";
+            });
+            services.AddSession();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
 
             services.AddControllersWithViews();
 
@@ -39,6 +45,20 @@ namespace FE
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
+
+            app.UseMvc(router =>
+
+            {
+
+                router.MapRoute(
+
+                name: "default",
+
+                template: "{controller=Login}/{action=Login}/{id?}");
+
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -50,6 +70,8 @@ namespace FE
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

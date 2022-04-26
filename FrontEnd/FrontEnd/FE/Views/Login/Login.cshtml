@@ -1,0 +1,54 @@
+﻿@page
+@model FE.Models.Empleado
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+</head>
+
+<div class="global-container" style="text-align:center">
+    <div class="card login-form">
+        <div class="card-body">
+            <link href="~/css/StyleSheet2.css" rel="stylesheet" />
+
+
+            <h3 class="card-title text-center">Iniciar Sesion</h3>
+            <br />
+            <br />
+            <div class="card-text" style="text-align:initial; ">
+                <div class="container body-content">
+
+                    <!--@@3 Inicio: Método de tipo post para validar o iniciar el acceso a la aplicación-->
+                    <form action="/Login/Login" method="post">
+
+
+
+                        @Html.AntiForgeryToken()
+
+                        <h4></h4>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.TextBoxFor(m => m.CorreoEmpleado, new { @class = "form-control", placeholder = "Email" })
+
+                        @Html.ValidationMessageFor(m => m.CorreoEmpleado, "", new { @class = "text-danger" })
+
+                        <br />
+
+                        @Html.PasswordFor(m => m.ClaveEmpleado, new { @class = "form-control", placeholder = "Contraseña" })
+
+                        @Html.ValidationMessageFor(m => m.ClaveEmpleado, "", new { @class = "text-danger" })
+
+                        <br />
+
+                        <input type="submit" value="Iniciar sesión" class="btn btn-lg btn-primary btn-block" />
+
+                    </form>
+
+                    <!--@@3 Final-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
