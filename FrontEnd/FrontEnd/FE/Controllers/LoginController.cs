@@ -117,7 +117,7 @@ namespace FE.Controllers
                             HttpContext.Session.SetString("Rol", rol);
                         }
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Producto");
 
                     } else
                     {

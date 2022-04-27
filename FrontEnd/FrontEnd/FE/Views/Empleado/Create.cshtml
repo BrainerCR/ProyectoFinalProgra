@@ -1,10 +1,10 @@
 ﻿@model FE.Models.Empleado
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Agregar Nuevo Empleado";
 }
 
-<h1>Create</h1>
+<h1>Agregar</h1>
 
 <h4>Empleado</h4>
 <hr />
@@ -52,14 +52,14 @@
                 <select asp-for="IdRol" class ="form-control" asp-items="ViewBag.IdRol"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Agregar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar a la lista</a>
 </div>
 
 @section Scripts {

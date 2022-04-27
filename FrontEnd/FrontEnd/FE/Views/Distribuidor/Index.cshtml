@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<FE.Models.Distribuidor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Distribuidores";
 }
 
-<h1>Index</h1>
+<h1>Distribuidores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Agregar Nuevo Distribuidor</a>
 </p>
 <table class="table">
     <thead>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.TelefonoDistribuidor)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdDistribuidor">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdDistribuidor">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdDistribuidor">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdDistribuidor">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDistribuidor">Detalle</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDistribuidor">Eliminar</a>
             </td>
         </tr>
 }
